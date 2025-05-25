@@ -31,6 +31,34 @@ def hello_world():
                            partner=partners)
 
 
+@app.route("/python")
+def python_page():
+    return render_template("python_nav.html",
+                           webName="BloggingSharma",
+                           partner=partners)
+
+
+@app.route("/flask")
+def flask_page():
+    return render_template("flask_nav.html",
+                           webName="BloggingSharma",
+                           partner=partners)
+
+
+@app.route("/c")
+def c_page():
+    return render_template("C_nav.html",
+                           webName="BloggingSharma",
+                           partner=partners)
+
+
+@app.route("/webDev")
+def webDev_page():
+    return render_template("webDev_nav.html",
+                           webName="BloggingSharma",
+                           partner=partners)
+
+
 @app.route("/partners")
 def partner():
     return jsonify(partners)
