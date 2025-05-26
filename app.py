@@ -63,6 +63,14 @@ def webDev_page():
                            name="WebDev")
 
 
+@app.route("/Sign In")
+def Sign():
+    return render_template("login_sign.html",
+                           webName="BloggingSharma",
+                           partner=partners,
+                           name="WebDev")
+
+
 @app.route("/partners")
 def partner():
     return jsonify(partners)
