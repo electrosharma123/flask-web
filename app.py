@@ -35,28 +35,32 @@ def hello_world():
 def python_page():
     return render_template("python_nav.html",
                            webName="BloggingSharma",
-                           partner=partners)
+                           partner=partners,
+                           name="python")
 
 
 @app.route("/flask")
 def flask_page():
     return render_template("flask_nav.html",
                            webName="BloggingSharma",
-                           partner=partners)
+                           partner=partners,
+                           name="flask")
 
 
 @app.route("/c")
 def c_page():
     return render_template("C_nav.html",
                            webName="BloggingSharma",
-                           partner=partners)
+                           partner=partners,
+                           name="C")
 
 
 @app.route("/webDev")
 def webDev_page():
     return render_template("webDev_nav.html",
                            webName="BloggingSharma",
-                           partner=partners)
+                           partner=partners,
+                           name="WebDev")
 
 
 @app.route("/partners")
