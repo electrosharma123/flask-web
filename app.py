@@ -1,6 +1,16 @@
-from flask import Flask, json, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 'electrosharma874@gmail.com'
+app.config['MAIL_PASSWORD'] = 'lpna gtyj sgna vimh'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
+
+# @app.route("/Contact", methods=["GET", "POST"])
 
 partners = [
     {
@@ -66,6 +76,34 @@ def webDev_page():
 @app.route("/Sign In")
 def Sign():
     return render_template("login_sign.html",
+                           webName="BloggingSharma",
+                           partner=partners,
+                           name="WebDev")
+
+
+@app.route("/Contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        name = request.form.get("FirstName")
+        email = request.form.get("Email")
+        phone = request.form.get("PhoneNumber")
+        message = request.form.get("Query")
+
+        msg = Message(
+            subject=f"Mail from {name}",
+            body=
+            f"Name: {name}\nE-mail: {email}\nPhone: {phone}\n\n\n{message}",
+            sender=email,
+            recipients=['electrosharma874@gmail.com'])
+        mail.send(msg)
+
+        return render_template("contact.html",
+                               webName="BloggingSharma",
+                               partner=partners,
+                               name="WebDev",
+                               success=True)
+
+    return render_template("contact.html",
                            webName="BloggingSharma",
                            partner=partners,
                            name="WebDev")
